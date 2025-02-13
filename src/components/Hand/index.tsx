@@ -1,13 +1,31 @@
 import * as S from "./styles";
 
-import { RockIcon } from "../../assets/index";
+import { RockIcon, PaperIcon, ScissorsIcon } from "../../assets/index";
 
-const HandComponent = () => {
+type HandComponentProps = {
+  handType: "rock" | "paper" | "scissor";
+};
+
+const HandComponent = ({ handType }: HandComponentProps) => {
+
+  const getIcon = () => {
+    switch (handType) {
+      case "rock":
+        return <RockIcon />;
+      case "paper":
+        return <PaperIcon />;
+      case "scissor":
+        return <ScissorsIcon />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <S.Container $handType="scissor">
+    <S.Container $handType={handType}>
       <S.Border>
         <S.Icon>
-          <RockIcon />
+          {getIcon()}
         </S.Icon>
       </S.Border>
     </S.Container>
